@@ -14,13 +14,13 @@ pushd $TASK_NAME
 dotnet new $TASK_TYPE -lang f#
 popd
 
-mkdir $TASK_NAME.tests
-pushd $TASK_NAME.tests
+mkdir $TASK_NAME.Tests
+pushd $TASK_NAME.Tests
 dotnet new nunit -lang f#
-dotnet add $TASK_NAME.tests.fsproj reference ../$TASK_NAME/$TASK_NAME.fsproj
+dotnet add $TASK_NAME.Tests.fsproj reference ../$TASK_NAME/$TASK_NAME.fsproj
 popd
 
 dotnet new sln
 dotnet sln *.sln add $TASK_NAME/$TASK_NAME.fsproj
-dotnet sln *.sln add $TASK_NAME.tests/$TASK_NAME.tests.fsproj
+dotnet sln *.sln add $TASK_NAME.Tests/$TASK_NAME.Tests.fsproj
 popd
