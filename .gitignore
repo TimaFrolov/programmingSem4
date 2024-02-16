@@ -1,0 +1,6 @@
+obj/
+bin/
+*.xml
+*.Artifacts/
+.idea/
+*.user
