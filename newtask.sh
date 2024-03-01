@@ -17,6 +17,7 @@ popd
 mkdir $TASK_NAME.Tests
 pushd $TASK_NAME.Tests
 dotnet new nunit -lang f#
+dotnet add $TASK_NAME.Tests.fsproj package FsUnit -v 5.0.0
 dotnet add $TASK_NAME.Tests.fsproj reference ../$TASK_NAME/$TASK_NAME.fsproj
 popd
 
