@@ -11,4 +11,4 @@ let testCases =
     |> List.map (fun (expr, expected) -> TestCaseData(expr, expected))
 
 [<TestCaseSource("testCases")>]
-let testEval expr expected = Expr.eval expr |> should equal expected
+let testEval (expr: Expr) expected = expr.eval |> should equal expected

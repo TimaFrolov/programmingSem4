@@ -5,8 +5,8 @@ type Expr =
     | Add of Expr * Expr
     | Mul of Expr * Expr
 
-    static member eval =
-        function
+    member this.eval =
+        match this with
         | Var x -> x
-        | Add(x, y) -> Expr.eval x + Expr.eval y
-        | Mul(x, y) -> Expr.eval x * Expr.eval y
+        | Add(x, y) -> x.eval + y.eval
+        | Mul(x, y) -> x.eval * y.eval
