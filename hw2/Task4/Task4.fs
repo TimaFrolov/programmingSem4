@@ -2,6 +2,6 @@
 
 let primeNumbers =
     let isPrime n =
-        { 2 .. int << sqrt << float <| n } |> Seq.forall (fun x -> n % x <> 0)
+        { 2 .. n |> float |> sqrt |> int } |> Seq.forall (fun x -> n % x <> 0)
 
     Seq.initInfinite id |> Seq.skip 2 |> Seq.filter isPrime
