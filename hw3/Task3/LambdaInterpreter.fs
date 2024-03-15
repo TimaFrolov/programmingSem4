@@ -12,21 +12,23 @@ type Lambda =
         | Abstraction(x, e) -> Set.remove x <| e.freeVariables
 
     member e1.substitute (x: string) (e2: Lambda) : Lambda =
-        let occupiedVariables = e2.freeVariables
+        let freeVariables = e2.freeVariables
 
-        let rec generateNew x =
-            if occupiedVariables.Contains x then
-                generateNew (x + "'")
+        let rec generateNew (occupied: string Set) x =
+            if occupied.Contains x then
+                generateNew occupied (x + "'")
             else
                 x
 
         let rec helper =
             function
             | Var y when y = x -> e2
-            | Var y -> Var <| generateNew y
+            | Var y -> Var y
             | Apply(e3, e4) -> Apply(helper e3, helper e4)
             | Abstraction(y, e3) when y = x -> Abstraction(y, e3)
-            | Abstraction(y, e3) -> Abstraction(generateNew y, helper e3)
+            | Abstraction(y, e3) ->
+                let z = generateNew (Set.union freeVariables e3.freeVariables) y
+                Abstraction(z, e3.substitute y (Var z) |> helper)
 
         helper e1
 

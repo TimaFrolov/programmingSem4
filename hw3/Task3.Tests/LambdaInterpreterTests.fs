@@ -21,7 +21,11 @@ let substitutionTestCases =
     [ Var "x", "x", Var "y", Var "y"
       Var "x", "z", Var "y", Var "x"
       Abstraction("x", Var "x"), "x", Var "y", Abstraction("x", Var "x")
-      Abstraction("y", Apply(Var("y"), Var("x"))), "x", Var("y"), Abstraction("z", Apply(Var("z"), Var("y"))) ]
+      Abstraction("y", Apply(Var("y"), Var("x"))), "x", Var("y"), Abstraction("z", Apply(Var("z"), Var("y")))
+      Abstraction("x", Apply(Apply(Var "x", Var "x'"), Var "y")),
+      "y",
+      Var "x",
+      Abstraction("z", Apply(Apply(Var "z", Var "x'"), Var "x")) ]
     |> List.map (fun (input, variable, substitution, expected) -> TestCaseData(input, variable, substitution, expected))
 
 [<TestCaseSource("substitutionTestCases")>]
