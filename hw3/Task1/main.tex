@@ -1,0 +1,17 @@
+\documentclass{report}
+
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb, scalerel, amsfonts, mathtools}
+
+\begin{document}
+\begin{flalign*}
+  & ((\lambda a.(\lambda b.b b) (\lambda b.b b)) b) ((\lambda c.(c b)) (\lambda a.a)) \\
+  & ((\lambda b.b b) (\lambda b.b b)) ((\lambda c.(c b)) (\lambda a.a)) \\
+  & ((\lambda b.b b) (\lambda b.b b)) ((\lambda c.(c b)) (\lambda a.a)) \\
+\end{flalign*}
+
+Дальнейшее применение $\beta$-редукции по нормальной стратегии не изменит форму терма $\Rightarrow$ у исходного терма нет нормальной формы (по теореме Карри).
+
+\end{document}
