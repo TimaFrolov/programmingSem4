@@ -1,0 +1,19 @@
+\documentclass{report}
+
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb, scalerel, amsfonts, mathtools}
+
+\begin{document}
+\begin{flalign*}
+  & S K K = (\lambda x y z. x z (y z)) (\lambda x y. x) (\lambda x y. x) \\
+  & (\lambda x y z. x z (y z)) (\lambda x y. x) (\lambda x y. x) = (\lambda y z. (\lambda x w. x) z (y z)) (\lambda x y. x) \\
+  & (\lambda y z. (\lambda x w. x) z (y z)) (\lambda x y. x) = \lambda z. (\lambda x w. x) z ((\lambda x y. x) z) \\
+  & \lambda z. (\lambda x w. x) z ((\lambda x y. x) z) = \lambda z. (\lambda w. z) ((\lambda x y. x) z) \\
+  & \lambda z. (\lambda w. z) ((\lambda x y. x) z) = \lambda z. z \\
+  & \lambda z. z = I \\
+  & \Rightarrow S K K = I. \text{ч.т.д.}
+\end{flalign*}
+
+\end{document}
