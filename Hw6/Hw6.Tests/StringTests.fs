@@ -11,7 +11,7 @@ let TestOk () =
         let z = x + y
         return z
     }
-    |> should equal "3"
+    |> should equal (Some "3")
 
 [<Test>]
 let TestFail () =
@@ -21,7 +21,7 @@ let TestFail () =
         let z = x + y
         return z
     }
-    |> should equal ""
+    |> should equal None
 
 [<Test>]
 let TestFractional () =
@@ -29,4 +29,4 @@ let TestFractional () =
         let! x = "1.5"
         return x
     }
-    |> should equal ""
+    |> should equal None
