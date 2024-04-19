@@ -22,3 +22,11 @@ let TestFail () =
         return z
     }
     |> should equal ""
+
+[<Test>]
+let TestFractional () =
+    calculate {
+        let! x = "1.5"
+        return x
+    }
+    |> should equal ""
