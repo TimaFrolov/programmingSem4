@@ -12,7 +12,7 @@ type 'a PriorityQueue() =
             raise (System.InvalidOperationException("Queue is empty"))
 
     let removeQueueWithPriority N =
-        queues <- queues |> List.filter (fst >> ((=) N))
+        queues <- queues |> List.filter (fst >> ((<>) N))
 
     member _.Insert(elem: 'a, priority: int) : unit =
         match queues |> List.tryFind (fst >> (=) priority) with
