@@ -10,8 +10,8 @@
 
   <ItemGroup>
     <Compile Include="PriorityQueueTests.fs" />
-    <Compile Include="Program.fs" />
     <Compile Include="QueueTests.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
