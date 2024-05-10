@@ -19,3 +19,16 @@ let TestStatementParser test expected =
     match run parseStatement test with
     | Success(result, _, _) -> result |> should equal expected
     | Failure(error, _, _) -> Assert.Fail($"Failed to parse: {error}")
+
+let programTestCases =
+    [ "let S = \\x y z.x z (y z)\nlet K = \\x y.x\nS K K",
+      [ Let("S", Abs("x", Abs("y", Abs("z", App(App(Var "x", Var "z"), App(Var "y", Var "z"))))))
+        Let("K", Abs("x", Abs("y", Var "x")))
+        Eval(App(App(Var "S", Var "K"), Var "K")) ] ]
+    |> List.map (fun (a, b) -> TestCaseData(a, b))
+
+[<TestCaseSource("programTestCases")>]
+let TestProgramParser test expected =
+    match run parseProgram test with
+    | Success(result, _, _) -> result |> should equal expected
+    | Failure(error, _, _) -> Assert.Fail($"Failed to parse: {error}")

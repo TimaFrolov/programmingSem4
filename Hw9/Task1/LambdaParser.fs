@@ -39,7 +39,7 @@ let parseStatementNoEof =
         |>> Let
      )
      <|> (parseTerm |>> Eval))
-    
+
 let parseStatement = parseStatementNoEof .>> eof
 
-let parseProgram = sepBy1 parseStatementNoEof (pchar '\n')
+let parseProgram = sepBy1 parseStatementNoEof (pchar '\n') .>> eof
