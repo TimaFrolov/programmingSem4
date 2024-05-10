@@ -32,13 +32,14 @@ parseTermRef.Value <-
     sepBy1 parseTermR (pchar ' ')
     |>> (fun terms -> List.fold (fun acc term -> App(acc, term)) (List.head terms) (List.tail terms))
 
-let parseStatement =
+let parseStatementNoEof =
     (attempt (
         pstring "let" >>. spaces1 >>. parseVar .>> spaces1 .>> pchar '=' .>> spaces1
         .>>. parseTerm
         |>> Let
      )
      <|> (parseTerm |>> Eval))
-    .>> eof
+    
+let parseStatement = parseStatementNoEof .>> eof
 
-let parseProgram = sepBy1 parseStatement (pchar '\n')
+let parseProgram = sepBy1 parseStatementNoEof (pchar '\n')
