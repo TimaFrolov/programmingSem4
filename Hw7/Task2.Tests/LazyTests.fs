@@ -39,7 +39,7 @@ let TestLazy (constructor: (unit -> obj) -> obj ILazy) =
 
     counter.Count() |> should equal 1
 
-[<TestCaseSource("threadSafeLazyConstructors")>]
+[<TestCaseSource("lazyConstructors")>]
 [<Repeat(40)>]
 let TestThreadSafeLazy (constructor: (unit -> obj) -> obj ILazy) =
     let counter = Counter()
@@ -53,11 +53,11 @@ let TestThreadSafeLazy (constructor: (unit -> obj) -> obj ILazy) =
     |> Seq.length
     |> should equal 1
 
-[<Test>]
+[<TestCaseSource("threadSafeLazyConstructors")>]
 [<Repeat(40)>]
-let TestConcurrentLazy () =
+let TestConcurrentLazy (constructor: (unit -> obj) -> obj ILazy) =
     let counter = Counter()
-    let lazyValue: obj ILazy = ConcurrentLazy counter.Call
+    let lazyValue: obj ILazy = constructor counter.Call
 
     Seq.initInfinite (fun _ -> async { return lazyValue.Get() })
     |> Seq.take 16
