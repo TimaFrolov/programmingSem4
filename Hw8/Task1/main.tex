@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb, scalerel, amsfonts, mathtools}
+
+\begin{document}
+
+\section{Грамматика}
+<Term> ::= <Application> | <TermR> \\
+<Application> ::= <TermR> <Spaces> <Term> \\
+<TermR> ::= <Abstraction> | <Var> | '('<Term>')' \\
+<Abstraction> ::= '\textbackslash' <VarList> '.' <Term> \\
+<VarList> ::= <Var> | <Var> <Spaces> <VarList> \\
+<Var> ::= <Letter> | <Letter> <Var> \\
+<Spaces> ::= ' ' | ' ' <Spaces> \\
+<Letter> ::= 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'j' | 'i' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'J' | 'I' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z'  \\
+<Statement> = 'let' <Spaces> <Var> <Spaces> '=' <Spaces> <Term> | <Term> \\
+<Program> = <Statement> | <Statement> '\textbackslash n' <Program> \\
+Стартовый нетерминал - <Program>
+
+\section{Примеры}
+\subsection{let K = \textbackslash x y.x}
+<Program> $\Rightarrow$ \\
+<Statement> $\Rightarrow$ \\
+'let' <Spaces> <Var> <Spaces> '=' <Spaces> <Term> $\Rightarrow$ \\
+'let' ' ' <Var> <Spaces> '=' <Spaces> <Term> $\Rightarrow$ \\
+'let' ' ' <Letter> <Spaces> '=' <Spaces> <Term> $\Rightarrow$ \\
+'let' ' ' 'K' <Spaces> '=' <Spaces> <Term> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' <Spaces> <Term> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' ' ' <Term> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' ' ' <Abstraction> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' ' ' '\textbackslash' <VarList> '.' <Term> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' ' ' '\textbackslash' <Var> <Spaces> <VarList> '.' <Term> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' ' ' '\textbackslash' <Letter> <Spaces> <VarList> '.' <Term> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' ' ' '\textbackslash' 'x' <Spaces> <VarList> '.' <Term> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' ' ' '\textbackslash' 'x' ' ' <VarList> '.' <Term> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' ' ' '\textbackslash' 'x' ' ' <Var> '.' <Term> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' ' ' '\textbackslash' 'x' ' ' <Letter> '.' <Term> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' ' ' '\textbackslash' 'x' ' ' 'y' '.' <Term> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' ' ' '\textbackslash' 'x' ' ' 'y' '.' <Var> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' ' ' '\textbackslash' 'x' ' ' 'y' '.' <Letter> $\Rightarrow$ \\
+'let' ' ' 'K' ' ' '=' ' ' '\textbackslash' 'x' ' ' 'y' '.' 'x' \\
+\subsection{S K K}
+<Program> $\Rightarrow$ \\
+<Statement> $\Rightarrow$ \\
+<Term> $\Rightarrow$ \\
+<Application> $\Rightarrow$ \\
+<TermR> <Spaces> <Term> $\Rightarrow$ \\
+<Var> <Spaces> <Term> $\Rightarrow$ \\
+<Letter> <Spaces> <Term> $\Rightarrow$ \\
+'S' <Spaces> <Term> $\Rightarrow$ \\
+'S' ' ' <Term> $\Rightarrow$ \\
+'S' ' ' <Application> $\Rightarrow$ \\
+'S' ' ' <TermR> <Spaces> <Term> $\Rightarrow$ \\
+'S' ' ' <Var> <Spaces> <Term> $\Rightarrow$ \\
+'S' ' ' <Letter> <Spaces> <Term> $\Rightarrow$ \\
+'S' ' ' 'K' <Spaces> <Term> $\Rightarrow$ \\
+'S' ' ' 'K' ' ' <Term> $\Rightarrow$ \\
+'S' ' ' 'K' ' ' <TermR> $\Rightarrow$ \\
+'S' ' ' 'K' ' ' <Var> $\Rightarrow$ \\
+'S' ' ' 'K' ' ' <Letter> $\Rightarrow$ \\
+'S' ' ' 'K' ' ' 'K' \\
+\subsection{let}
+<Program> $\Rightarrow$ \\
+<Statement> $\Rightarrow$ \\
+<Term> $\Rightarrow$ \\
+<TermR> $\Rightarrow$ \\
+<Var> $\Rightarrow$ \\
+<Letter> <Var> $\Rightarrow$ \\
+'l' <Var> $\Rightarrow$ \\
+'l' <Letter> <Var> $\Rightarrow$ \\
+'l' 'e' <Var> $\Rightarrow$ \\
+'l' 'e' <Letter> $\Rightarrow$ \\
+'l' 'e' 't' \\
+
+\end{document}
+

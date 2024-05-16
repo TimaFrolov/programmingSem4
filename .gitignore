@@ -1,6 +1,16 @@
+# Dotnet generated files
 obj/
 bin/
 *.xml
 *.Artifacts/
+
+# Rider generated files
 .idea/
 *.user
+
+# latex generated files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
