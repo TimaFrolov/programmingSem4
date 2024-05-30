@@ -91,9 +91,11 @@ let testCases =
 
 [<TestCaseSource("testCases")>]
 let TestSimulator (network: NetworkInfo<OS, int>) (expected: int list list) =
+    let random = System.Random()
+
     Simulator(
         { new Randomizer with
-            member _.getNext() = 0.0 },
+            member _.getNext() = random.NextDouble() },
         network
     )
         .run ()
