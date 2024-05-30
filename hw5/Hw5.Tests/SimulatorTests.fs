@@ -32,7 +32,7 @@ let testCases =
           member _.infected() = [ 2 ]
 
       },
-      [ [ 1 ]; [ 3 ] ]
+      [ [ 1 ]; [ 3 ] ] // Expected sequence for Simulator.run to return
       { new NetworkInfo<OS, int> with // Some computers are infected and some are not because they have different opearting systems
           member _.getProbability start target =
               match (start, target) with
@@ -56,7 +56,7 @@ let testCases =
           member _.infected() = [ 2 ]
 
       },
-      [ [ 1 ] ]
+      [ [ 1 ] ] // Expected sequence for Simulator.run to return
       { new NetworkInfo<OS, int> with // Some computers not connected with infected computers
           member _.getProbability start target = 1.0
 
@@ -85,7 +85,7 @@ let testCases =
           member _.infected() = [ 2; 4 ]
 
       },
-      [ [ 1; 5 ]; [ 3 ] ] ]
+      [ [ 1; 5 ]; [ 3 ] ] ] // Expected sequence for Simulator.run to return
     |> List.map (fun (network, expected) -> TestCaseData(network, expected))
 
 
